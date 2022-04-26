@@ -1,0 +1,16 @@
+@media only screen and (min-width: 920px) {
+    body {
+      background-image: url("~src/assets/images/Background-1.png");
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+    }
+    /* .wrapper {
+      position: relative;
+    } */
+    /* section.login {
+      position: absolute;
+      right: 0;
+      max-width: 20em;
+    } */
+}

@@ -1,0 +1,81 @@
+<section class="addBook">
+    <h1 *ngIf="showAddBook">Add Book</h1>
+    <h1 *ngIf="!showAddBook">Edit Book</h1>
+    <form class="form" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+        <div class="col">
+            <div class="field">
+                <label>Book Title</label>
+                <input type="text" id="name" name="name" formControlName="name" placeholder="Book Title" required>
+                <!-- Validation error if any for book name -->
+                <div *ngIf="bookForm.controls.name.invalid && (bookForm.controls.name.dirty || bookForm.controls.name.touched)" class="message" style="color: crimson;">
+                    <div *ngIf="bookForm.controls.name.errors?.['required']">Book name is required.</div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Author's Name</label>
+                <input type="text" id="author" name="author" formControlName="author" placeholder="Author's Name" required>
+                <!-- Validation error if any for author's name -->
+                <div *ngIf="bookForm.controls.author.invalid && (bookForm.controls.author.dirty || bookForm.controls.author.touched)" class="message" style="color: crimson;">
+                    <div *ngIf="bookForm.controls.author.errors?.['required']">Authors name is required.</div>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label>Number of Pages</label>
+                <input type="number" id="numberOfPages" name="numberOfPages" formControlName="numberOfPages" placeholder="Number of Pages in mintues" required>
+                <!-- Validation error if any for book length -->
+                <div *ngIf="bookForm.controls.numberOfPages.invalid && (bookForm.controls.numberOfPages.dirty || bookForm.controls.numberOfPages.touched)" class="message" style="color: crimson;">
+                    <div *ngIf="bookForm.controls.numberOfPages.errors?.['required']">Minutes is required.</div>
+                    <div *ngIf="bookForm.controls.numberOfPages.errors?.['min']">
+                        Minutes must be greater than 0.
+                    </div>
+                    <div *ngIf="bookForm.controls.numberOfPages.errors?.['max']">
+                        Minutes must be atmost 600.
+                    </div>
+                </div>
+            </div>
+
+            <div class="field range-field">
+                <!-- <input type="number" id="ratings" name="ratings" formControlName="ratings" placeholder="Ratings out of 5"> -->
+                <label>Ratings out of 5 - <span class="rangle-value">{{getRatings()}}</span></label>
+                <input type="range" min="0" max="50" id="ratings" name="ratings" formControlName="ratings" value="25" placeholder="Enter rating in range (0.0 - 5.0)" class="range" required>
+                    <!-- <Input class="range" type="range" name "" value="0" min="0" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input> -->
+            </div>
+
+            <div class="field">
+                <label>Price in Rupees</label>
+                <input type="number" placeholder="Price in Rupees" name="price" id="price" formControlName="price" required>
+                <!-- Validation error if any for book price -->
+                <div *ngIf="bookForm.controls.price.invalid && (bookForm.controls.price.dirty || bookForm.controls.price.touched)" class="message">
+                    <div *ngIf="bookForm.controls.price.errors?.['required']">Price is required.</div>
+                    <div *ngIf="bookForm.controls.price.errors?.['min']">
+                        Price must be greater than 0.
+                    </div>
+                    <div *ngIf="bookForm.controls.price.errors?.['max']">
+                        Price must be atmost 5000.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="field textarea-field">
+                <label>Book Blurb</label>
+                <textarea name="blurb" id="blurb" formControlName="blurb" cols="" rows="" placeholder="Book Blurb - 50 characters min, 1000 characters max." required></textarea>
+                <!-- Validation error if any for book length -->
+                <div *ngIf="bookForm.controls.blurb.invalid && (bookForm.controls.blurb.dirty || bookForm.controls.blurb.touched)" class="message" style="color: crimson;">
+                    <div *ngIf="bookForm.controls.blurb.errors?.['required']">Blurb is required.</div>
+                    <div *ngIf="bookForm.controls.blurb.errors?.['minlength']">
+                        Blurb must be atleast 50 characters.
+                    </div>
+                    <div *ngIf="bookForm.controls.blurb.errors?.['maxlength']">
+                        Blurb must be atmost 1000 characters.
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-black" type="submit" [disabled] = "!bookForm.valid">Add</button>
+        </div>
+    </form>
+</section>

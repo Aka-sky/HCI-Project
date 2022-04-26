@@ -1,0 +1,17 @@
+<!-- <a routerLink="/">&#8592;Go Back</a>
+
+<h1>Book Blurb</h1>
+
+<h3>{{ book.name }}</h3>
+
+<p style="white-space: pre-line;">{{ book.blurb }}</p> -->
+<section class="blurb">
+    <div class="col">
+        <a [routerLink] = "['/']">&#8592; Go Back</a>
+        <h1>{{ book.name }}</h1>
+        <p>{{ book.blurb }}</p>
+    </div>
+    <div class="col">
+        <img src="./assets/images/bookCoverDisplay.png" alt="Book Cover Image">
+    </div>
+</section>

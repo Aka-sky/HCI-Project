@@ -1,0 +1,14 @@
+<div class="image"></div>
+<section class="login">
+    <form (ngSubmit)="onSubmit()">
+        <h1>Login</h1>
+        <input type="text" name="username" id="username" placeholder="Username" [(ngModel)]="username" />
+        <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password" />
+        <select name="role" id="role" [(ngModel)]="role">
+            <option value="" disabled selected hidden>Select your Role</option>
+            <option value="librarian">Librarian</option>
+            <option value="reader">Reader</option>
+        </select>
+        <button class="btn btn-black">Sign In</button>
+    </form>
+</section>
